@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+       default-autowire="byName">
+
+    <context:component-scan base-package="cn.shadowsong.eve.pla" />
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="fileEncoding" value="UTF-8"/>
+        <property name="locations">
+            <list>
+                <value>classpath:common.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="qqAgent" class="cn.shadowsong.eve.pla.QQAgent">
+        <property name="selfQQ" value="${qq.robot.selfQQ}"></property>
+        <property name="httpClientUrl" value="${qq.robot.url}"></property>
+    </bean>
+
+    <bean id="jabberAgent" class="cn.shadowsong.eve.pla.JabberAgent">
+        <property name="domain" value="${jabber.domain}"></property>
+        <property name="host" value="${jabber.host.name}"></property>
+        <property name="username" value="${jabber.user}"></property>
+        <property name="password" value="${jabber.password}"></property>
+        <property name="source" value="${jabber.source}"></property>
+        <property name="groupId" value="${qq.robot.groupId}"></property>
+    </bean>
+</beans>

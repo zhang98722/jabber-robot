@@ -89,6 +89,12 @@ public class JabberAgent implements InitializingBean{
                     logger.debug("skip chatState message:"+messageEvent.getMessage().toString());
                     return;
                 }
+                //去除私聊
+                Jid sender=messageEvent.getMessage().getFrom();
+                if(!sender.getLocal().equals("directorbot")){
+                    logger.debug("skip private message:"+messageEvent.getMessage().toString());
+                    return;
+                }
                 //去除一般指令
                 String body=messageEvent.getMessage().getBody();
                 if(body!=null&&body.startsWith("!")){

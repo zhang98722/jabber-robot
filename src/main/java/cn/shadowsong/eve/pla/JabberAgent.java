@@ -91,12 +91,13 @@ public class JabberAgent implements InitializingBean{
                 }
                 //去除私聊
                 Jid sender=messageEvent.getMessage().getFrom();
-                if(!sender.getLocal().equals("directorbot")){
+                if(!sender.getLocal().equals("directorbot")&&!sender.getLocal().equals("will_shadowsong")){
                     logger.debug("skip private message:"+messageEvent.getMessage().toString());
                     return;
                 }
                 //去除一般指令
                 String body=messageEvent.getMessage().getBody();
+                body=body.replace("This was a broadcast from","broadcast from");
                 if(body!=null&&body.startsWith("!")){
                     logger.debug("skip command message:"+messageEvent.getMessage().toString());
                     return;
@@ -104,16 +105,16 @@ public class JabberAgent implements InitializingBean{
                 //转发
                 StringBuilder sb=new StringBuilder();
                 if (Message.Type.CHAT.equals(messageEvent.getMessage().getType())){
-                    sb.append("~~~来舰队了!如果是Strat-OP，请所有人停止刷怪，立即到1DQ1进组，听不懂英文可以上YY36681226有翻译!~~~\n");
+                    sb.append("~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
                     sb.append(body);
                     JabberQQAdapter.lastPing=body;
                     sb.append("\n");
                     sb.append("\n");
-                    sb.append("~~~来舰队了!如果是Strat-OP，请所有人停止刷怪，立即到1DQ1进组，听不懂英文可以上YY36681226有翻译!~~~\n");
+                    sb.append("~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
                     sb.append(body);
                     sb.append("\n");
                     sb.append("\n");
-                    sb.append("~~~来舰队了!如果是Strat-OP，请所有人停止刷怪，立即到1DQ1进组，听不懂英文可以上YY36681226有翻译!~~~\n");
+                    sb.append("~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
                     sb.append(body);
 
                 }else if(Message.Type.GROUPCHAT.equals(messageEvent.getMessage().getType())){

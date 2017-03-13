@@ -105,16 +105,16 @@ public class JabberAgent implements InitializingBean{
                 //转发
                 StringBuilder sb=new StringBuilder();
                 if (Message.Type.CHAT.equals(messageEvent.getMessage().getType())){
-                    sb.append("~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+                    sb.append("~~~~~~~~~~~~~~~~~~~~~~~~~\n");
                     sb.append(body);
                     JabberQQAdapter.lastPing=body;
                     sb.append("\n");
                     sb.append("\n");
-                    sb.append("~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+                    sb.append("~~~~~~~~~~~~~~~~~~~~~~~~~\n");
                     sb.append(body);
                     sb.append("\n");
                     sb.append("\n");
-                    sb.append("~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+                    sb.append("~~~~~~~~~~~~~~~~~~~~~~~~~\n");
                     sb.append(body);
 
                 }else if(Message.Type.GROUPCHAT.equals(messageEvent.getMessage().getType())){
